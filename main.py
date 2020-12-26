@@ -10,7 +10,8 @@ class user:
         self.__Tinggi = None
         self.__BeratBadan = None 
         self.__Nik = None 
-        self.__NomorHP = None 
+        self.__NomorHP = None
+        self.__Alamat = None 
         self.__NilaiUN = None 
         self.__AsalSekolah = None 
         self.__jurusan = None  
@@ -27,58 +28,48 @@ class user:
         self.__Username = input ("masukan Username Baru : ")
         self.__Password = input ("masukan password baru : ")
         self.__Nama = input ("masukan nama  : " )
-        self.__TanggaLahir =input ("masukan Tanggal Lahir : " )  
+        self.__TanggaLahir =input ("masukan Tanggal Lahir : " )
+        for row in connection.execute('SELECT * FROM Gender'):
+            print(row)
+        self.__Gender= input("masukan ID Gender : " )   
         self.__Tinggi =input ("masukan Tinggi : " )
         self.__BeratBadan =input ("masukan Berat : " ) 
         self.__nik =input ("masukan NIK  : " ) 
-        self.__NomorHP =input ("masukan NomorHP  : " ) 
-        self.__NilaiUN =input ("masukan Nilai UN  : " )   
-        self.__NamaAyah =input ("masukan Nama Ayah : " ) 
-        self.__NamaIbu =input ("masukan Nama Ibu : " )   
-        self.__JmlhSaudara = input ("masukan Jumlah saudara : " ) 
-
-        query = f'INSERT INTO User(Username,Password,Nama,tglLahir,tinggiBadan,beratBadan,NIK,noHP,Alamat,nilaiUN,jurusanPilihan,namaAyah,namaIbu,pekerjaanAyah,pekerjaanIbu,jmlSaudara) VALUES ("{self.__Username}", {self.__Password},{self.__Nama},{self.__TanggaLahir},{self.__Tinggi},{self.__BeratBadan},{self.__nik},{self.__NomorHP},{self.__NilaiUN},{self.__NamaAyah},{self.__NamaIbu},"{self.__JmlhSaudara}")'
-        connection.execute(query)
-        connection.commit() 
-    def AddStatus(self) : 
-        self.__status = input ("masukan Status  : " ) 
-    
-    def SetStatus(self):
-        for row in connection.execute('SELECT * FROM StatusSiswa'):
-            print(row)
-        self.__status = input ("masukan ID status : " )
-        query = f'INSERT INTO User(status) VALUES ("{self.__status}")'
-        connection.execute(query)
-        connection.commit()
-         
-
-    def AddAsalSekolah (self):
-        self.__Sekolah =input ("masukan Asal Sekolah : " )
-        query = f'INSERT INTO AsalSekolah(SekolahAsal) VALUES ("{self.__Sekolah}")'
-        connection.execute(query)
-        connection.commit()
-
-    def SetAsalSekolah (self):
+        self.__NomorHP =input ("masukan NomorHP  : " )
+        self.__Alamat = input ("masukan alamat : ") 
+        self.__NilaiUN =input ("masukan Nilai UN  : " )
         for row in connection.execute('SELECT * FROM AsalSekolah'):
             print(row)
         self.__AsalSekolah =input ("masukan ID Asal Sekolah : " )
-        query = f'INSERT INTO User(asalSekolah) VALUES ("{self.__AsalSekolah}")'
-        connection.execute(query)
-        connection.commit()
-
-    def SetGender (self) :
-         for row in connection.execute('SELECT * FROM Gender'):
-            print(row)
-        self.__Gender=input ("masukan ID Gender : " ) 
-        query = f'INSERT INTO User(Gender) VALUES ("{self.__Gender}")'
-        connection.execute(query)
-        connection.commit()
-
-    def SetJurusan(self) :
         for row in connection.execute('SELECT * FROM Jurusan'):
             print(row)
-        self.__jurusan =input ("masukan ID Jurusan : " )
-        query = f'INSERT INTO User(jurusanPilihan) VALUES ("{self.__jurusan}")'
+        self.__jurusan =input ("masukan ID Jurusan : " )   
+        self.__NamaAyah =input ("masukan Nama Ayah : " ) 
+        self.__NamaIbu =input ("masukan Nama Ibu : " )
+        for row in connection.execute('SELECT * FROM Pekerjaan'):
+            print(row)
+        self.__KerjaAyah =input ("masukan Pekerjaan Ayah : " )
+        for row in connection.execute('SELECT * FROM Pekerjaan'):
+            print(row)
+        self.__KerjaIbu =input ("masukan Nama Ibu : " )   
+        self.__JmlhSaudara = input ("masukan Jumlah saudara : " )
+        for row in connection.execute('SELECT * FROM StatusSiswa'):
+            print(row)
+        self.__status = input ("masukan ID status : " ) 
+
+        query = f'INSERT INTO User(Username,Password,Nama,tglLahir,Gender,tinggiBadan,beratBadan,NIK,noHP,Alamat,nilaiUN,asalSekolah,jurusanPilihan,namaAyah,namaIbu,pekerjaanAyah,pekerjaanIbu,jmlSaudara,status) VALUES ("{self.__Username}", "{self.__Password}","{self.__Nama}",{self.__TanggaLahir},{self.__Gender},"{self.__Tinggi}","{self.__BeratBadan}","{self.__nik}","{self.__NomorHP}","{self.__Alamat}",{self.__NilaiUN},{self.__AsalSekolah},{self.__jurusan},"{self.__NamaAyah}","{self.__NamaIbu}",{self.__KerjaAyah},{self.__KerjaIbu},"{self.__JmlhSaudara}",{self.__status})'
+        connection.execute(query)
+        connection.commit() 
+    
+    def AddStatus(self) : 
+        self.__status = input ("masukan Status  : " )
+        query = f'INSERT INTO StatusSiswa(Status) VALUES ("{self.__status}")'
+        connection.execute(query)
+        connection.commit()
+    
+    def AddAsalSekolah (self):
+        self.__Sekolah =input ("masukan Asal Sekolah : " )
+        query = f'INSERT INTO AsalSekolah(SekolahAsal) VALUES ("{self.__Sekolah}")'
         connection.execute(query)
         connection.commit()
     
@@ -88,21 +79,18 @@ class user:
         connection.execute(query)
         connection.commit()
     
-    def SetPekerjaanAyah (self):
-        for row in connection.execute('SELECT * FROM Pekerjaan'):
-            print(row)
-        self.__KerjaAyah =input ("masukan Pekerjaan Ayah : " )
-        query = f'INSERT INTO User(pekerjaanAyah) VALUES ("{self.__KerjaAyah}")'
+    def Addjurusan(self):
+        self.__jurusan = input ("masukan Jurusan : ")
+        query = f'INSERT INTO Jurusan(JurusanPilihan) VALUES ("{self.__jurusan}")'
+        connection.execute(query)
+        connection.commit()
+    
+    def AddGender(self) :
+        self.__Gender = input ("masukan Gender  : ")
+        query = f'INSERT INTO Gender(Gender) VALUES ("{self.__Gender}")'
         connection.execute(query)
         connection.commit()
 
-    def SetPekerjaanIbu (self):
-        for row in connection.execute('SELECT * FROM Pekerjaan'):
-            print(row)
-        self.__KerjaIbu =input ("masukan Nama Ibu : " )
-        query = f'INSERT INTO User(pekerjaanIbu) VALUES ("{self.__KerjaIbu}")'
-        connection.execute(query)
-        connection.commit()
         
 
 class panitia (user) :
@@ -113,6 +101,4 @@ class panitia (user) :
         self.__Username = input ("masukan Username Baru : ")
         self.__Password = input ("masukan password baru : ")
         self.__Nip =  input("masukan NIP : ")
-        
-obj= panitia()
-obj.SetStatus()
+
