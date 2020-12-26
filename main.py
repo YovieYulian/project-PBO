@@ -1,5 +1,5 @@
 import sqlite3
-connection = sqlite3.connect("E:/Kuliah/Python/PBO/dbyovie.db")
+connection = sqlite3.connect("E:/data kuliah/semester 3/PBO/project/coding/database.db")
 
 class user:
     def __init__ (self) :
@@ -90,7 +90,7 @@ class user:
         query = f'INSERT INTO Gender(Gender) VALUES ("{self.__Gender}")'
         connection.execute(query)
         connection.commit()
-
+    
     def ubahNama(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNama = input('Masukkan nama: ')
@@ -201,13 +201,62 @@ class user:
         connection.execute(f'UPDATE User SET Nama = "{setStatus}" WHERE idUser = {idSearch}')
         connection.commit()
 
+    def DeleteUser(self):
+        for row in connection.execute('SELECT * FROM User'):
+            print(row)
+        idDelete = input('Masukkan id Siswa yang akan dihapus: ')
+        connection.execute(f'DELETE FROM User  WHERE idUser ={idDelete}')
+        connection.commit()
+
         
 
 class panitia (user) :
     def __init__ (self) :
         self.__Nip = None
         self.__Nama = None
+        self.__Username = None
+        self.__Password = None
+    
     def AddDataPanitia (self) :
         self.__Username = input ("masukan Username Baru : ")
         self.__Password = input ("masukan password baru : ")
+        self.__Nama = input ("masukan nama : ")
         self.__Nip =  input("masukan NIP : ")
+        query = f'INSERT INTO Panitia(Username,Password,Nama,NIP) VALUES ("{self.__Username}","{self.__Password}","{self.__Nama}","{self.__Nip}")'
+        connection.execute(query)
+        connection.commit()
+
+print("----Login----")
+print("""
+Siapkah anda ??
+1. Panitia
+2. siswa
+""")
+login = input ("masukan pilihan anda : ")
+if login == "1" :
+    obj=panitia()
+    Username = input ("Username : ")
+    Password = input ("Password : ")
+    cur = connection.cursor()
+    cur.execute('SELECT * from Panitia WHERE Username="%s" AND Password="%s"' % (Username, Password))
+    if (len(list(cur)) > 0):
+        while True :
+            print(""" 
+            Menu : 
+                1. Melihat data Siswa
+                2. Menambah Data Siswa
+                3. Mengubah Data Siswa
+                4. Exit
+            """)
+
+            masukan = input ()
+            if masukan == "1" :
+                pass
+            if masukan == "2" :
+                obj.AddDataUser()
+            if masukan == "4" :
+                break
+    else:
+        print ("Login failed")
+    
+    
