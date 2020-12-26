@@ -1,5 +1,5 @@
 import sqlite3
-connection = sqlite3.connect("E:/data kuliah/semester 3/PBO/project/coding/database.db")
+connection = sqlite3.connect("E:/Kuliah/Python/PBO/dbyovie.db")
 
 class user:
     def __init__ (self) :
@@ -91,6 +91,116 @@ class user:
         connection.execute(query)
         connection.commit()
 
+    def ubahNama(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNama = input('Masukkan nama: ')
+        connection.execute(f'UPDATE User SET Nama = "{setNama}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahTglLahir(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setTgl = input('Masukkan tanggal lahir: (format YYYY-MM-DD)')
+        connection.execute(f'UPDATE User SET Nama = "{setTgl}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahGender(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        for row in connection.execute('SELECT * FROM Gender'):
+            print(row)
+        setGender = input('Masukkan jenis kelamin: ')
+        connection.execute(f'UPDATE User SET Nama = "{setGender}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahTinggi(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setTinggi = input('Masukkan tinggi badan: ')
+        connection.execute(f'UPDATE User SET Nama = "{setTinggi}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahBerat(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setBerat = input('Masukkan berat badan: ')
+        connection.execute(f'UPDATE User SET Nama = "{setBerat}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahNik(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNik = input('Masukkan NIK: ')
+        connection.execute(f'UPDATE User SET Nama = "{setNik}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahNoHp(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNoHp = input('Masukkan nomer HP: ')
+        connection.execute(f'UPDATE User SET Nama = "{setNoHp}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahAlamat(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setAlamat = input('Masukkan Alamat: ')
+        connection.execute(f'UPDATE User SET Nama = "{setAlamat}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahNilai(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNilai = input('Masukkan NilaiUN : ')
+        connection.execute(f'UPDATE User SET Nama = "{setNilai}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahAsalSekolah(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        for row in connection.execute('SELECT * FROM AsalSekolah'):
+            print(row)
+        setSekolah = input('Masukkan ID sekolah: ')
+        connection.execute(f'UPDATE User SET Nama = "{setSekolah}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahJurusan(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        for row in connection.execute('SELECT * FROM Jurusan'):
+            print(row)
+        setJurusan = input('Masukkan Jurusan pilihan: ')
+        connection.execute(f'UPDATE User SET Nama = "{setJurusan}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahNamaAyah(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNamaAyah = input('Masukkan nama Ayah: ')
+        connection.execute(f'UPDATE User SET Nama = "{setNamaAyah}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahNamaIbu(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setNamaIbu = input('Masukkan nama Ibu: ')
+        connection.execute(f'UPDATE User SET Nama = "{setNamaIbu}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahPekerjaanAyah(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setPekerjaanAyah = input('Masukkan pekerjaan Ayah: ')
+        connection.execute(f'UPDATE User SET Nama = "{setPekerjaanAyah}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahPekerjaanIbu(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setPekerjaanIbu = input('Masukkan pekerjaan Ibu: ')
+        connection.execute(f'UPDATE User SET Nama = "{setPekerjaanIbu}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahJmlSaudara(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        setSaudara = input('Masukkan jumlah saudara: ')
+        connection.execute(f'UPDATE User SET Nama = "{setSaudara}" WHERE idUser = {idSearch}')
+        connection.commit()
+
+    def ubahStatus(self):
+        idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
+        for row in connection.execute('SELECT * FROM StatusSiswa'):
+            print(row)
+        setStatus = input('Tetapkan status calon siswa: ')
+        connection.execute(f'UPDATE User SET Nama = "{setStatus}" WHERE idUser = {idSearch}')
+        connection.commit()
+
         
 
 class panitia (user) :
@@ -101,4 +211,3 @@ class panitia (user) :
         self.__Username = input ("masukan Username Baru : ")
         self.__Password = input ("masukan password baru : ")
         self.__Nip =  input("masukan NIP : ")
-
