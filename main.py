@@ -208,13 +208,12 @@ class user:
         connection.execute(f'DELETE FROM User  WHERE idUser ={idDelete}')
         connection.commit()
     def ShowDataUser (self) :
-        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah = Pekerjaan.idPekerjaan , Pekerjaan on User.pekerjaanIbu = Pekerjaan.idPekerjaan , StatusSiswa on User.status = StatusSiswa.idStatus'):
+        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
             print(row)
     
-    def ShowDataUser1 (self) :
-        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah = Pekerjaan.idPekerjaan , Pekerjaan on User.pekerjaanIbu = Pekerjaan.idPekerjaan , StatusSiswa on User.status = StatusSiswa.idStatus ,'):
+    def ShowDataUser (self) :
+        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
             print(row)
-
         
 class panitia (user) :
     def __init__ (self) :
@@ -271,6 +270,8 @@ if login == "1" :
                         pass
             if masukan == "4" :
                 obj.DeleteUser()
+            if masukan == "5" :
+                break
             
     else:
         print ("Login failed")
