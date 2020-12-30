@@ -281,5 +281,4 @@ if login == "2":
     cur = connection.cursor()
     cur.execute('SELECT * from Panitia WHERE Username="%s" AND Password="%s"' % (Username, Password))
     if (len(list(cur)) > 0):
-
-    
+        pass
