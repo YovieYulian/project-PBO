@@ -207,9 +207,15 @@ class user:
         idDelete = input('Masukkan id Siswa yang akan dihapus: ')
         connection.execute(f'DELETE FROM User  WHERE idUser ={idDelete}')
         connection.commit()
+    def ShowDataUser (self) :
+        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah = Pekerjaan.idPekerjaan , Pekerjaan on User.pekerjaanIbu = Pekerjaan.idPekerjaan , StatusSiswa on User.status = StatusSiswa.idStatus'):
+            print(row)
+    
+    def ShowDataUser1 (self) :
+        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah = Pekerjaan.idPekerjaan , Pekerjaan on User.pekerjaanIbu = Pekerjaan.idPekerjaan , StatusSiswa on User.status = StatusSiswa.idStatus ,'):
+            print(row)
 
         
-
 class panitia (user) :
     def __init__ (self) :
         self.__Nip = None
@@ -225,7 +231,6 @@ class panitia (user) :
         query = f'INSERT INTO Panitia(Username,Password,Nama,NIP) VALUES ("{self.__Username}","{self.__Password}","{self.__Nama}","{self.__Nip}")'
         connection.execute(query)
         connection.commit()
-
 print("----Login----")
 print("""
 Siapkah anda ??
@@ -246,17 +251,35 @@ if login == "1" :
                 1. Melihat data Siswa
                 2. Menambah Data Siswa
                 3. Mengubah Data Siswa
-                4. Exit
+                4. Menghapus Data Siswa
+                5. Exit
             """)
 
             masukan = input ()
             if masukan == "1" :
-                pass
+                obj.ShowDataUser()
             if masukan == "2" :
                 obj.AddDataUser()
+            if masukan == "3" :
+                obj.ShowDataUser()
+                while True :
+                    print(""" 
+                    apa yang akan di edit
+                    """)
+                    Edit = input("")
+                    if Edit == "1" :
+                        pass
             if masukan == "4" :
-                break
+                obj.DeleteUser()
+            
     else:
         print ("Login failed")
-    
+if login == "2":
+    obj=user()
+    Username = input ("Username : ")
+    Password = input ("Password : ")
+    cur = connection.cursor()
+    cur.execute('SELECT * from Panitia WHERE Username="%s" AND Password="%s"' % (Username, Password))
+    if (len(list(cur)) > 0):
+
     
