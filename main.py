@@ -1,5 +1,5 @@
 import sqlite3
-connection = sqlite3.connect("E:/data kuliah/semester 3/PBO/project/coding/database.db")
+connection = sqlite3.connect("E:/Kuliah/Python/PBO/dbbaru.db")
 
 class user:
     def __init__ (self) :
@@ -100,7 +100,7 @@ class user:
     def ubahTglLahir(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setTgl = input('Masukkan tanggal lahir: (format YYYY-MM-DD)')
-        connection.execute(f'UPDATE User SET Nama = "{setTgl}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET tglLahir = "{setTgl}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahGender(self):
@@ -108,43 +108,43 @@ class user:
         for row in connection.execute('SELECT * FROM Gender'):
             print(row)
         setGender = input('Masukkan jenis kelamin: ')
-        connection.execute(f'UPDATE User SET Nama = "{setGender}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET Gender = "{setGender}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahTinggi(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setTinggi = input('Masukkan tinggi badan: ')
-        connection.execute(f'UPDATE User SET Nama = "{setTinggi}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET tinggiBadan = "{setTinggi}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahBerat(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setBerat = input('Masukkan berat badan: ')
-        connection.execute(f'UPDATE User SET Nama = "{setBerat}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET beratBadan = "{setBerat}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahNik(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNik = input('Masukkan NIK: ')
-        connection.execute(f'UPDATE User SET Nama = "{setNik}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET NIK = "{setNik}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahNoHp(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNoHp = input('Masukkan nomer HP: ')
-        connection.execute(f'UPDATE User SET Nama = "{setNoHp}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET noHp = "{setNoHp}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahAlamat(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setAlamat = input('Masukkan Alamat: ')
-        connection.execute(f'UPDATE User SET Nama = "{setAlamat}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET Alamat = "{setAlamat}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahNilai(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNilai = input('Masukkan NilaiUN : ')
-        connection.execute(f'UPDATE User SET Nama = "{setNilai}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET nilaiUN = "{setNilai}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahAsalSekolah(self):
@@ -152,7 +152,7 @@ class user:
         for row in connection.execute('SELECT * FROM AsalSekolah'):
             print(row)
         setSekolah = input('Masukkan ID sekolah: ')
-        connection.execute(f'UPDATE User SET Nama = "{setSekolah}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET asalSekolah = "{setSekolah}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahJurusan(self):
@@ -160,37 +160,37 @@ class user:
         for row in connection.execute('SELECT * FROM Jurusan'):
             print(row)
         setJurusan = input('Masukkan Jurusan pilihan: ')
-        connection.execute(f'UPDATE User SET Nama = "{setJurusan}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET jurusanPilihan = "{setJurusan}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahNamaAyah(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNamaAyah = input('Masukkan nama Ayah: ')
-        connection.execute(f'UPDATE User SET Nama = "{setNamaAyah}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET namaAyah = "{setNamaAyah}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahNamaIbu(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setNamaIbu = input('Masukkan nama Ibu: ')
-        connection.execute(f'UPDATE User SET Nama = "{setNamaIbu}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET namaIbu = "{setNamaIbu}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahPekerjaanAyah(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setPekerjaanAyah = input('Masukkan pekerjaan Ayah: ')
-        connection.execute(f'UPDATE User SET Nama = "{setPekerjaanAyah}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET pekerjaanAyah = "{setPekerjaanAyah}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahPekerjaanIbu(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setPekerjaanIbu = input('Masukkan pekerjaan Ibu: ')
-        connection.execute(f'UPDATE User SET Nama = "{setPekerjaanIbu}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET pekerjaanIbu = "{setPekerjaanIbu}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahJmlSaudara(self):
         idSearch = input('Masukkan id siswa yang akan dirubah datanya: ')
         setSaudara = input('Masukkan jumlah saudara: ')
-        connection.execute(f'UPDATE User SET Nama = "{setSaudara}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET jmlSaudara = "{setSaudara}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def ubahStatus(self):
@@ -198,22 +198,79 @@ class user:
         for row in connection.execute('SELECT * FROM StatusSiswa'):
             print(row)
         setStatus = input('Tetapkan status calon siswa: ')
-        connection.execute(f'UPDATE User SET Nama = "{setStatus}" WHERE idUser = {idSearch}')
+        connection.execute(f'UPDATE User SET status = "{setStatus}" WHERE idUser = {idSearch}')
         connection.commit()
 
     def DeleteUser(self):
         for row in connection.execute('SELECT * FROM User'):
             print(row)
         idDelete = input('Masukkan id Siswa yang akan dihapus: ')
-        connection.execute(f'DELETE FROM User  WHERE idUser ={idDelete}')
+        connection.execute(f'DELETE * FROM User  WHERE idUser ={idDelete}')
         connection.commit()
+        
     def ShowDataUser (self) :
-        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
+        for row in connection.execute('SELECT Nama, tglLahir, Genders.GenderDetail, tinggiBadan, beratBadan, NIK, noHP, Alamat, nilaiUN, AsalSekolah.SekolahAsal, Jurusan.JurusanPilihan, namaAyah, namaIbu, pekerjaanAyah, pekerjaanIbu, jmlSaudara, StatusSiswa.Status FROM User JOIN Genders on User.Gender = Genders.idGender, AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah, Jurusan on User.jurusanPilihan = Jurusan.idJurusan, Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
             print(row)
+
+    def ShowSelfUser (self) :
+        print('Nama: ')
+        #for row in connection.execute(f'SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender, AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah, Jurusan on User.jurusanPilihan = Jurusan.idJurusan, Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus WHERE Username = "{Username}"'):
+        #   print(row)
+        for row in connection.execute(f'SELECT Nama From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Tangal Lahir: ')
+        for row in connection.execute(f'SELECT tglLahir From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Gender: ')
+        for row in connection.execute(f'SELECT Genders.GenderDetail From User JOIN Genders on User.Gender = Genders.idGender WHERE Username = "{Username}"'):
+            print(row)
+        print('Tinggi Badan: ')
+        for row in connection.execute(f'SELECT tinggiBadan From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Berat Badan: ')
+        for row in connection.execute(f'SELECT beratBadan From User WHERE Username = "{Username}"'):
+            print(row)
+        print('NIK: ')
+        for row in connection.execute(f'SELECT NIK From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Nomer HP: ')
+        for row in connection.execute(f'SELECT noHP From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Alamat: ')
+        for row in connection.execute(f'SELECT Alamat From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Nilai UN: ')
+        for row in connection.execute(f'SELECT nilaiUN From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Asal Sekolah: ')
+        for row in connection.execute(f'SELECT AsalSekolah.SekolahASal From User JOIN AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah WHERE Username = "{Username}"'):
+            print(row)
+        print('Jurusan Pilihan: ')
+        for row in connection.execute(f'SELECT Jurusan.JurusanPilihan From User JOIN Jurusan on User.jurusanPilihan = Jurusan.idJurusan WHERE Username = "{Username}"'):
+            print(row)
+        print('Nama Ayah: ')
+        for row in connection.execute(f'SELECT namaAyah From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Nama Ibu: ')
+        for row in connection.execute(f'SELECT namaIbu From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Pekerjaan Ayah: ')
+        for row in connection.execute(f'SELECT Pekerjaan.Pekerjaan From User JOIN Pekerjaan on User.pekerjaanAyah = Pekerjaan.idPekerjaan WHERE Username = "{Username}"'):
+            print(row)
+        print('Pekerjaan Ibu: ')
+        for row in connection.execute(f'SELECT Pekerjaan.Pekerjaan From User JOIN Pekerjaan on User.pekerjaanIbu = Pekerjaan.idPekerjaan WHERE Username = "{Username}"'):
+            print(row)
+        print('Jumlah Saudara: ')
+        for row in connection.execute(f'SELECT jmlSaudara From User WHERE Username = "{Username}"'):
+            print(row)
+        print('Status Penerimaan: ')
+        for row in connection.execute(f'SELECT StatusSiswa.Status From User JOIN StatusSiswa on User.status = StatusSiswa.idStatus WHERE Username = "{Username}"'):
+            print(row)
+        
     
-    def ShowDataUser (self) :
-        for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
-            print(row)
+    #def ShowDataUser (self) :
+    #    for row in connection.execute('SELECT * FROM User JOIN Gender on User.Gender = Gender.idGender,AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah,Jurusan on User.jurusanPilihan = Jurusan.idJurusan,Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
+    #        print(row)
         
 class panitia (user) :
     def __init__ (self) :
@@ -264,10 +321,51 @@ if login == "1" :
                 while True :
                     print(""" 
                     apa yang akan di edit
+                    1. Nama || 2. TanggalLahir || 3. Gender || 4. Tinggi badan || 5. Berat badan ||
+                    6. NIK || 7. No HP || 8. Alamat || 9. Nilai UN || 10. Asal Sekolah ||
+                    11. Jurusan Pilihan || 12. Nama Ayah || 13. Nama Ibu || 14. Pekerjaan Ayah || 15. Pekerjaan Ibu ||
+                    16. Jumlah Saudara || 17. Status Penerimaan || 18. Back
                     """)
                     Edit = input("")
                     if Edit == "1" :
-                        pass
+                        obj.ubahNama()
+                    elif Edit == "2":
+                        obj.ubahTglLahir()
+                    elif Edit == "3":
+                        obj.ubahGender()
+                    elif Edit == "4":
+                        obj.ubahTinggi()
+                    elif Edit == "5":
+                        obj.ubahBerat()
+                    elif Edit == "6":
+                        obj.ubahNik()
+                    elif Edit == "7":
+                        obj.ubahNoHp()
+                    elif Edit == "8":
+                        obj.ubahAlamat()
+                    elif Edit == "9":
+                        obj.ubahNilai()
+                    elif Edit == "10":
+                        obj.ubahAsalSekolah()
+                    elif Edit == "11":
+                        obj.ubahJurusan()
+                    elif Edit == "12":
+                        obj.ubahNamaAyah()
+                    elif Edit == "13":
+                        obj.ubahNamaIbu()
+                    elif Edit == "14":
+                        obj.ubahPekerjaanAyah()
+                    elif Edit == "15":
+                        obj.ubahPekerjaanIbu()
+                    elif Edit == "16":
+                        obj.ubahJmlSaudara()
+                    elif Edit == "17":
+                        obj.ubahStatus()
+                    elif Edit == "18":
+                        break
+                    else:
+                        continue
+
             if masukan == "4" :
                 obj.DeleteUser()
             if masukan == "5" :
@@ -280,6 +378,8 @@ if login == "2":
     Username = input ("Username : ")
     Password = input ("Password : ")
     cur = connection.cursor()
-    cur.execute('SELECT * from Panitia WHERE Username="%s" AND Password="%s"' % (Username, Password))
+    cur.execute('SELECT * from User WHERE Username="%s" AND Password="%s"' % (Username, Password))
     if (len(list(cur)) > 0):
-        pass
+        obj.ShowSelfUser()
+    else:
+        print('Login Gagal')
