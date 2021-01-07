@@ -5,6 +5,15 @@ class user:
     def __init__ (self) :
         self.__Username = None
         self.__Password = None
+        self.__Nama = None
+          
+    
+class panitia (user) :
+    def __init__ (self) :
+        self.__Nip = None
+        self.__Nama = None
+        self.__Username = None
+        self.__Password = None
         self.__TanggaLahir = None 
         self.__Gender= None 
         self.__Tinggi = None
@@ -23,7 +32,7 @@ class user:
         self.__status = None 
         self.__Pekerjaan = None
         self.__Sekolah = None
-          
+    
     def AddDataUser(self):
         self.__Username = input ("masukan Username Baru : ")
         self.__Password = input ("masukan password baru : ")
@@ -59,7 +68,16 @@ class user:
         query = f'INSERT INTO User(Username,Password,Nama,tglLahir,Gender,tinggiBadan,beratBadan,NIK,noHP,Alamat,nilaiUN,asalSekolah,jurusanPilihan,namaAyah,namaIbu,pekerjaanAyah,pekerjaanIbu,jmlSaudara,status) VALUES ("{self.__Username}", "{self.__Password}","{self.__Nama}","{self.__TanggaLahir}",{self.__Gender},"{self.__Tinggi}","{self.__BeratBadan}","{self.__nik}","{self.__NomorHP}","{self.__Alamat}",{self.__NilaiUN},{self.__AsalSekolah},{self.__jurusan},"{self.__NamaAyah}","{self.__NamaIbu}",{self.__KerjaAyah},{self.__KerjaIbu},"{self.__JmlhSaudara}",{self.__status})'
         connection.execute(query)
         connection.commit() 
-    
+
+    def AddDataPanitia (self) :
+        self.__Username = input ("masukan Username Baru : ")
+        self.__Password = input ("masukan password baru : ")
+        self.__Nama = input ("masukan nama : ")
+        self.__Nip =  input("masukan NIP : ")
+        query = f'INSERT INTO Panitia(Username,Password,Nama,NIP) VALUES ("{self.__Username}","{self.__Password}","{self.__Nama}","{self.__Nip}")'
+        connection.execute(query)
+        connection.commit()
+
     def AddStatus(self) : 
         self.__status = input ("masukan Status  : " )
         query = f'INSERT INTO StatusSiswa(Status) VALUES ("{self.__status}")'
@@ -210,11 +228,23 @@ class user:
         idDelete = input('Masukkan id Siswa yang akan dihapus: ')
         connection.execute(f'DELETE  FROM User  WHERE idUser ={idDelete}')
         connection.commit()
+    
+    def ShowDataUser (self) :
+        for row in connection.execute('SELECT idUser, Username, Password, Nama, tglLahir, Genders.GenderDetail, tinggiBadan, beratBadan, NIK, noHP, Alamat, nilaiUN, AsalSekolah.SekolahAsal, Jurusan.JurusanPilihan, namaAyah, namaIbu, pekerjaanAyah, pekerjaanIbu, jmlSaudara, StatusSiswa.Status FROM User JOIN Genders on User.Gender = Genders.idGender, AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah, Jurusan on User.jurusanPilihan = Jurusan.idJurusan, Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
+            print(row)
+    
     def ShowLabelPanitia (self) :
         print(""" 
 ID || Username || Password || Nama || Tanggal Lahir || Gender || Tinggi Badan || Berat Badan || NIK || NO HP || Alamat || Nilai UN || Asal Sekolah || Jurusan || Nama Ayah || Nama Ibu  || Kerja Ayah || kerja IBU || Jumlah Saudara || status
         """)
 
+
+class siswa (user) :
+    def __init__ (self) :
+        self.__Username = None
+        self.__Password = None
+        self.__Nama = None
+    
     def ShowSelfUser (self) :
         print('Nama: ')
         for row in connection.execute(f'SELECT Nama From User WHERE Username = "{Username}"'):
@@ -268,26 +298,7 @@ ID || Username || Password || Nama || Tanggal Lahir || Gender || Tinggi Badan ||
         for row in connection.execute(f'SELECT StatusSiswa.Status From User JOIN StatusSiswa on User.status = StatusSiswa.idStatus WHERE Username = "{Username}"'):
             print(row)
         
-    
-    def ShowDataUser (self) :
-        for row in connection.execute('SELECT idUser, Username, Password, Nama, tglLahir, Genders.GenderDetail, tinggiBadan, beratBadan, NIK, noHP, Alamat, nilaiUN, AsalSekolah.SekolahAsal, Jurusan.JurusanPilihan, namaAyah, namaIbu, pekerjaanAyah, pekerjaanIbu, jmlSaudara, StatusSiswa.Status FROM User JOIN Genders on User.Gender = Genders.idGender, AsalSekolah on User.asalSekolah = AsalSekolah.idSekolah, Jurusan on User.jurusanPilihan = Jurusan.idJurusan, Pekerjaan on User.pekerjaanAyah AND User.pekerjaanIbu = Pekerjaan.idPekerjaan,StatusSiswa on User.status = StatusSiswa.idStatus'):
-            print(row)
-        
-class panitia (user) :
-    def __init__ (self) :
-        self.__Nip = None
-        self.__Nama = None
-        self.__Username = None
-        self.__Password = None
-    
-    def AddDataPanitia (self) :
-        self.__Username = input ("masukan Username Baru : ")
-        self.__Password = input ("masukan password baru : ")
-        self.__Nama = input ("masukan nama : ")
-        self.__Nip =  input("masukan NIP : ")
-        query = f'INSERT INTO Panitia(Username,Password,Nama,NIP) VALUES ("{self.__Username}","{self.__Password}","{self.__Nama}","{self.__Nip}")'
-        connection.execute(query)
-        connection.commit()
+
 print("----Login----")
 print("""
 Siapkah anda ??
@@ -391,7 +402,7 @@ if login == "1" :
     else:
         print ("Login failed")
 if login == "2":
-    obj=user()
+    obj=siswa()
     Username = input ("Username : ")
     Password = input ("Password : ")
     cur = connection.cursor()
